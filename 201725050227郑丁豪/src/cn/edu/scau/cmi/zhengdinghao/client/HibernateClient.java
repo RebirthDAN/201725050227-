@@ -1,6 +1,8 @@
 package cn.edu.scau.cmi.zhengdinghao.client;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.hibernate.Transaction;
 
@@ -22,10 +24,10 @@ public class HibernateClient {
 				"功能10：教师修改被指导的学生\r\n" + 
 				"");
 		Scanner reader = new Scanner(System.in);
-		int a = reader.nextInt();
-		System.out.print(a);
 		Student student;
 		Teacher teacher;
+		Long i;
+		Set<Student> students;
 		switch (reader.nextInt()) {
 		case 1:
 			System.out.println("请输入要添加的学生id与姓名");
@@ -80,10 +82,27 @@ public class HibernateClient {
 		case 9:
 			System.out.println("请输入要操作的老师id");
 			teacher = findTeacher(reader.nextLong());
-			System.out.println("请输入学生们的id 空为结束");
-
+			System.out.println("请输入学生们的id -1为结束");
+			students = new HashSet<>();
+			Long i;
+			while((i = reader.nextLong())!=-1) {
+			student = findStudent(i);
+			students.add(student);
+			}
+			teacher.setStudents(students);
+			updateTeacher(teacher);
+			break;
+		case 10:
+			System.out.println("请输入要操作的老师id");
 			teacher = findTeacher(reader.nextLong());
-			
+			System.out.println("请输入学生们的id -1为结束");
+			students = new HashSet<>();
+			while((i = reader.nextLong())!=-1) {
+			student = findStudent(i);
+			students.add(student);
+			}
+			teacher.setStudents(students);
+			updateTeacher(teacher);
 			break;
 		default:
 			break;
