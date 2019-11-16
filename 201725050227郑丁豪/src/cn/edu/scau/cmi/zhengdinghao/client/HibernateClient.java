@@ -84,7 +84,6 @@ public class HibernateClient {
 			teacher = findTeacher(reader.nextLong());
 			System.out.println("请输入学生们的id -1为结束");
 			students = new HashSet<>();
-			Long i;
 			while((i = reader.nextLong())!=-1) {
 			student = findStudent(i);
 			students.add(student);
