@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="cn.edu.scau.cmi.zhengdinghao.domain.Student" table="student">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="teacher" class="cn.edu.scau.cmi.zhengdinghao.domain.Teacher" fetch="select">
+            <column name="tutor" />
+        </many-to-one>
+        <property name="name" type="java.lang.String">
+            <column name="name" not-null="true" unique="false" />
+        </property>
+    </class>
+</hibernate-mapping>
