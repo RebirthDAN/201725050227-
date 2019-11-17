@@ -12,7 +12,13 @@ import cn.edu.scau.cmi.zhengdinghao.dao.TeacherDAO;
 
 public class HibernateClient {
 	public static void main(String args[]) {
-		System.out.println("请选择功能：\n功能1：添加学生\r\n" + 
+		Scanner reader = new Scanner(System.in);
+		Student student;
+		Teacher teacher;
+		Long i;
+		Set<Student> students;
+		while(true) {
+			System.out.println("请选择功能：\n功能1：添加学生\r\n" + 
 				"功能2：修改学生\r\n" + 
 				"功能3：删除学生\r\n" + 
 				"功能4：添加教师\r\n" + 
@@ -23,90 +29,85 @@ public class HibernateClient {
 				"功能9：教师选择被指导的学生\r\n" + 
 				"功能10：教师修改被指导的学生\r\n" + 
 				"");
-		Scanner reader = new Scanner(System.in);
-		Student student;
-		Teacher teacher;
-		Long i;
-		Set<Student> students;
-		switch (reader.nextInt()) {
-		case 1:
-			System.out.println("请输入要添加的学生id与姓名");
-			student = new Student(reader.nextLong(),reader.nextLine());
-			newStudent(student);
-			break;
-		case 2:
-			System.out.println("请输入要修改的学生id");
-			student = findStudent(reader.nextLong());
-			System.out.println("请输入修改后的学生的姓名");
-			student.setName(reader.nextLine());
-			updateStudent(student);
-			break;
-		case 3:
-			System.out.println("请输入要删除的学生id");
-			student = new Student(reader.nextLong(),null);
-			deleteStudent(student);
-			break;
-		case 4:
-			System.out.println("请输入要添加的老师id与姓名");
-			teacher = new Teacher(reader.nextLong(),reader.nextLine());
-			newTeacher(teacher);
-			break;
-		case 5:
-			System.out.println("请输入要修改的老师id");
-			teacher = new Teacher(reader.nextLong(),null);
-			System.out.println("请输入修改后的老师的姓名");
-			teacher.setName(reader.nextLine());
-			updateTeacher(teacher);
-			break;
-		case 6:
-			System.out.println("请输入要删除的老师id");
-			teacher = new Teacher(reader.nextLong(),null);
-			deleteTeacher(teacher);
-			break;
-		case 7:
-			System.out.println("请输入要操作的学生id");
-			student = findStudent(reader.nextLong());
-			System.out.println("请输入指导老师的id");
-			teacher = findTeacher(reader.nextLong());
-			student.setTeacher(teacher);
-			updateStudent(student);
-			break;
-		case 8:
-			System.out.println("请输入要操作的学生id");
-			student = findStudent(reader.nextLong());
-			System.out.println("请输入指导老师的id");
-			teacher = findTeacher(reader.nextLong());
-			student.setTeacher(teacher);
-			updateStudent(student);
-			break;
-		case 9:
-			System.out.println("请输入要操作的老师id");
-			teacher = findTeacher(reader.nextLong());
-			System.out.println("请输入学生们的id -1为结束");
-			students = new HashSet<>();
-			while((i = reader.nextLong())!=-1) {
-			student = findStudent(i);
-			students.add(student);
+			switch (reader.nextInt()) {
+			case 1:
+				System.out.println("请输入要添加的学生id与姓名");
+				student = new Student(reader.nextLong(),reader.nextLine());
+				newStudent(student);
+				break;
+			case 2:
+				System.out.println("请输入要修改的学生id");
+				student = findStudent(reader.nextLong());
+				System.out.println("请输入修改后的学生的姓名");
+				student.setName(reader.nextLine());
+				updateStudent(student);
+				break;
+			case 3:
+				System.out.println("请输入要删除的学生id");
+				student = new Student(reader.nextLong(),null);
+				deleteStudent(student);
+				break;
+			case 4:
+				System.out.println("请输入要添加的老师id与姓名");
+				teacher = new Teacher(reader.nextLong(),reader.nextLine());
+				newTeacher(teacher);
+				break;
+			case 5:
+				System.out.println("请输入要修改的老师id");
+				teacher = new Teacher(reader.nextLong(),null);
+				System.out.println("请输入修改后的老师的姓名");
+				teacher.setName(reader.nextLine());
+				updateTeacher(teacher);
+				break;
+			case 6:
+				System.out.println("请输入要删除的老师id");
+				teacher = new Teacher(reader.nextLong(),null);
+				deleteTeacher(teacher);
+				break;
+			case 7:
+				System.out.println("请输入要操作的学生id");
+				student = findStudent(reader.nextLong());
+				System.out.println("请输入指导老师的id");
+				teacher = findTeacher(reader.nextLong());
+				student.setTeacher(teacher);
+				updateStudent(student);
+				break;
+			case 8:
+				System.out.println("请输入要操作的学生id");
+				student = findStudent(reader.nextLong());
+				System.out.println("请输入指导老师的id");
+				teacher = findTeacher(reader.nextLong());
+				student.setTeacher(teacher);
+				updateStudent(student);
+				break;
+			case 9:
+				System.out.println("请输入要操作的老师id");
+				teacher = findTeacher(reader.nextLong());
+				System.out.println("请输入学生们的id -1为结束");
+				students = new HashSet<>();
+				while((i = reader.nextLong())!=-1) {
+				student = findStudent(i);
+				students.add(student);
+				}
+				teacher.setStudents(students);
+				updateTeacher(teacher);
+				break;
+			case 10:
+				System.out.println("请输入要操作的老师id");
+				teacher = findTeacher(reader.nextLong());
+				System.out.println("请输入学生们的id -1为结束");
+				students = new HashSet<>();
+				while((i = reader.nextLong())!=-1) {
+				student = findStudent(i);
+				students.add(student);
+				}
+				teacher.setStudents(students);
+				updateTeacher(teacher);
+				break;
+			default:
+				break;
 			}
-			teacher.setStudents(students);
-			updateTeacher(teacher);
-			break;
-		case 10:
-			System.out.println("请输入要操作的老师id");
-			teacher = findTeacher(reader.nextLong());
-			System.out.println("请输入学生们的id -1为结束");
-			students = new HashSet<>();
-			while((i = reader.nextLong())!=-1) {
-			student = findStudent(i);
-			students.add(student);
-			}
-			teacher.setStudents(students);
-			updateTeacher(teacher);
-			break;
-		default:
-			break;
 		}
-		
 	}
 	
 	public static void newStudent(Student student) {
