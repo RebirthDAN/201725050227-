@@ -1,10 +1,19 @@
 package cn.edu.scau.cmi.zhengdinghao.singleton;
 
 public class Chairman {
-	private String name;
+	private String name = "Nobody";
+	public static Chairman chairman = new Chairman();
 	
-	public Chairman(String name) {
-		this.name = name;
+	private Chairman() {
+	}
+	
+	public static Chairman setChairman(String name) {
+		chairman.name = name;
+		return chairman;
+	}
+	
+	public static Chairman getChairman() {
+		return chairman;
 	}
 	
 	public String getName() {

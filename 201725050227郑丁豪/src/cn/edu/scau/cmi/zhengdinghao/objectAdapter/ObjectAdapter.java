@@ -1,4 +1,4 @@
-package cn.edu.scau.cmi.zhengdinghao.classAdapter;
+package cn.edu.scau.cmi.zhengdinghao.objectAdapter;
 
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class GUI extends JFrame{
+public class ObjectAdapter extends JFrame{
 	JTextField text1;
 	JTextField text2;
 	JButton button;
@@ -21,8 +21,8 @@ public class GUI extends JFrame{
 	Adapter adapter;
 	public void run() {
 		setBounds(550,240,550,500);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("EX04");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("∂‘œÛ  ≈‰∆˜");
 		setLayout(new FlowLayout(5));
 		listStudent = new ArrayList<Student>();
 		adapter = new Adapter();

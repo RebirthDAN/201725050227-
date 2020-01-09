@@ -2,7 +2,7 @@ package cn.edu.scau.cmi.zhengdinghao.abstractFactory;
 
 public class AonongPork implements Pork{
 	@Override
-	public void typePork() {
-		System.out.println("This is AonongPork");
+	public String typePork() {
+		return "This is AonongPork";
 	}
 }

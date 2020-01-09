@@ -20,7 +20,7 @@ public class Team extends Organization{
 		String allName = name;
 		for(int i = 0;i < len;i++) {
 			Organization organization = organizations.get(i);
-			allName = allName  + "\n" + organization.getName();
+			allName +=("<br>" + organization.getName());
 		}
 		return allName;
 	}
